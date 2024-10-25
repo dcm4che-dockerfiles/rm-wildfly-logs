@@ -2,7 +2,7 @@
 
 if [ "$1" = "-h" -o "$1" = "--help" ]; then
     echo \
-"Provide cron service for daily deletion of Wildfly server log files
+"Provide cron service for daily deletion of WildFly Server log files
 
 Usage: docker run -v /host/log-dir1:/log-dir1 -v /host/log-dir2:/log-dir2
                   -d dcm4che/rm-wildfly-logs /log-dir1 /log-dir2
@@ -32,7 +32,8 @@ configure cron to run (additionally) other tasks periodically.
 
 E.g.:
 
-$ docker run -v /host/init.d:/init.d -d dcm4che/rm-wildfly-logs
+$ docker run -v /host/init.d:/init.d -v /host/used-blocks:/used-blocks
+             -d dcm4che/rm-wildfly-logs
 
 with executable
 
@@ -41,9 +42,7 @@ $ cat /host/init.d/get-used-blocks
 
 if [ ! -f \$0.done ]; then
   crontab -l \\
-  | sed \"$ i */1\t*\t*\t*\t*\tquota -w \\
-  | sed -n '\%fs1%p' \\
-  | cut -f2 -d ' ' > /used-blocks/fs1\" \\
+  | sed \"$ i */1\t*\t*\t*\t*\tquota -w | sed -n '\%fs1%p' | cut -f2 -d ' ' > /used-blocks/fs1\" \\
   | crontab -
   touch \$0.done
 fi
