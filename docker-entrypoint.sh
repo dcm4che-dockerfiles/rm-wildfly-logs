@@ -48,7 +48,7 @@ if [ ! -f \$0.done ]; then
 fi
 
 will query the number of used blocks of a filesystem every minute and
-write it to a file."
+write it to a file.\n"
     exit
 fi
 
