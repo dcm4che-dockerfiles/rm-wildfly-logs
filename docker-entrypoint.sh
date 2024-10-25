@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ "$1" = "-h" -o "$1" = "--help" ]; then
-    echo \
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
+    printf \
 "Provide cron service for daily deletion of WildFly Server log files
 
 Usage: docker run -v /host/log-dir1:/log-dir1 -v /host/log-dir2:/log-dir2
@@ -42,7 +42,7 @@ $ cat /host/init.d/get-used-blocks
 
 if [ ! -f \$0.done ]; then
   crontab -l \\
-  | sed \"$ i */1\t*\t*\t*\t*\tquota -w | sed -n '\%fs1%p' | cut -f2 -d ' ' > /used-blocks/fs1\" \\
+  | sed \"$ i */1\\\t*\\\t*\\\t*\\\t*\\\tquota -w | sed -n '\/fs1/p' | cut -f2 -d ' ' > /used-blocks/fs1\" \\
   | crontab -
   touch \$0.done
 fi
@@ -55,4 +55,4 @@ fi
 run-parts --exit-on-error /etc/init.d
 
 # start cron
-WILDFLY_SERVER_LOG_DIRS=$@ /usr/sbin/crond -f
+WILDFLY_SERVER_LOG_DIRS=$* /usr/sbin/crond -f

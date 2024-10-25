@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 for d in ${WILDFLY_SERVER_LOG_DIRS}; do
   find $d -type f -mtime +${WILDFLY_SERVER_LOG_RETENTION_DAYS:-7} -name 'server.log*' -exec rm -- '{}' \;
   find $d -type f -mtime +${WILDFLY_AUDIT_LOG_RETENTION_DAYS:-7} -name 'audit.log*' -exec rm -- '{}' \;
