@@ -1,0 +1,3 @@
+#!/bin/bash
+find ${WILDFLY_SERVER_LOG_DIR} -type f -mtime +${WILDFLY_SERVER_LOG_RETENTION_DAYS:-7} -name 'server.log*' -exec rm -- '{}' \;
+find ${WILDFLY_SERVER_LOG_DIR} -type f -mtime +${WILDFLY_AUDIT_LOG_RETENTION_DAYS:-7} -name 'audit.log*' -exec rm -- '{}' \;
