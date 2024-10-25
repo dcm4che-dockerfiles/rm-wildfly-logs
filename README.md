@@ -24,7 +24,7 @@ Optional
              -v /var/local/dcm4chee-arc/rm-wildfly-logs/init.d:/etc/init.d \
 ```
 bind mount a host directory containing executable files into the container at `/etc/init.d`, which are run on each
-container start in  the  lexical sort order. You may wrap statements which shall only be invoked on first container
+container start in lexical sort order. You may wrap statements which shall only be invoked on first container
 startup by
 ```bash
 #!/bin/sh
