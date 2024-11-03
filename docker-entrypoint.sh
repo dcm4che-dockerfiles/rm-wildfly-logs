@@ -26,6 +26,16 @@ files in specified directories are deleted, 7 days by default.
 WILDFLY_AUDIT_LOG_RETENTION_DAYS - number of days after which 'audit-log.log*'
 files in specified directories are deleted, 7 days by default.
 
+The cron service may also be used for daily deletion of HL7 audit logs of
+dcm4chee archive instances by bind mount HL7 audit logs into the container
+and passing the directory path(s) inside the container by Environment Variable:
+
+ARC_HL7_LOG_DIRS - space separated directory paths of HL7 audit logs of
+dcm4chee archive instances
+
+ARC_HL7_LOG_RETENTION_DAYS - number of days after which '*.hl7' files in
+directories specified by ARC_HL7_LOG_DIRS are deleted, 7 days by default.
+
 Excutable scripts bind mounted into the container under '/init.d' will be
 executed in lexical sort order at each container startup and may be used to
 configure cron to run (additionally) other tasks periodically.
