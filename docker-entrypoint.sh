@@ -69,7 +69,9 @@ write it to a file.\n"
     exit
 fi
 
-run-parts --exit-on-error /etc/init.d
+if [ -d "/etc/init.d" ]; then
+    run-parts --exit-on-error /etc/init.d
+fi
 
 # start cron
 WILDFLY_SERVER_LOG_DIRS=${WILDFLY_SERVER_LOG_DIRS:-$*} /usr/sbin/crond -f

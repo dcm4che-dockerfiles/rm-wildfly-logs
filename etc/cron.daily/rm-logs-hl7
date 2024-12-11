@@ -1,5 +1,5 @@
 #!/bin/sh
 for d in ${ARC_HL7_LOG_DIRS}; do
-    find $d -type f -mtime +${ARC_HL7_LOG_RETENTION_DAYS:-7} -name '*.hl7' -exec rm -- '{}' \;
+    find $d -type f -mtime +$((${ARC_HL7_LOG_RETENTION_DAYS:-7}-1)) -name '*.hl7' -exec rm -- '{}' \;
     find $d -empty -type d -delete
 done
