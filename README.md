@@ -14,6 +14,12 @@ match with the passed argument(s):
 
 '/log-dir1 /log-dir2'.
 
+Alternatively of specifying the directory path(s) by passed argument(s) they
+may be specifying by Environment Variable:
+
+WILDFLY_SERVER_LOG_DIRS - space separated directory paths containing WildFly
+server log files.
+
 The number of days after which log files are deleted can be configured by
 Environment Variables:
 
