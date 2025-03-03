@@ -29,6 +29,9 @@ files in specified directories are deleted, 7 days by default.
 WILDFLY_AUDIT_LOG_RETENTION_DAYS - number of days after which 'audit-log.log*'
 files in specified directories are deleted, 7 days by default.
 
+WILDFLY_ACCESS_LOG_RETENTION_DAYS - number of days after which 'access_log.*'
+files in specified directories are deleted, 7 days by default.
+
 The cron service may also be used for daily deletion of logged HL7 messages of
 dcm4chee archive instances by bind mount directories containing logged HL7 messages
 into the container and passing the directory path(s) inside the container by
