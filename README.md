@@ -46,24 +46,4 @@ directories specified by ARC_HL7_LOG_DIRS are deleted, 7 days by default.
 Executable scripts bind mounted into the container under '/init.d' will be
 executed in lexical sort order at each container startup and may be used to
 configure cron to run (additionally) other tasks periodically.
-
-E.g.:
-
-$ docker run -v /host/init.d:/init.d -v /host/used-blocks:/used-blocks
--d dcm4che/rm-wildfly-logs
-
-with executable
-
-$ cat /host/init.d/get-used-blocks
-#!/bin/sh
-
-if [ ! -f $0.done ]; then
-crontab -l \
-| sed "$ i */1\t*\t*\t*\t*\tquota -w | sed -n '\/fs1/p' | cut -f2 -d ' ' > /used-blocks/fs1" \
-| crontab -
-touch $0.done
-fi
-
-will query the number of used blocks of a filesystem every minute and
-write it to a file.
 ```
